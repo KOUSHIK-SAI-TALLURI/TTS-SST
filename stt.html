@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoiceHub — Speech to Text</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand-small">
+      <span>◉</span>
+      <strong>VoiceHub</strong>
+    </a>
+    <a href="index.html" class="back-link">← Back</a>
+  </header>
+
+  <main class="workspace">
+    <div class="page-heading stt-heading">
+      <div class="heading-icon">🎙</div>
+      <div>
+        <h1>Speech to Text</h1>
+        <p>Convert your audio into text using Amazon Transcribe.</p>
+      </div>
+    </div>
+
+    <section class="workspace-grid">
+      <div class="panel">
+        <div class="step-title">
+          <span class="step-number">1</span>
+          <div>
+            <h2>Select Audio</h2>
+            <p>Upload an audio file to transcribe.</p>
+          </div>
+        </div>
+
+        <label class="upload-box" for="audioFile">
+          <div class="upload-icon">↑</div>
+          <strong>Click to upload</strong>
+          <span>or drag and drop</span>
+          <small>MP3, WAV, M4A, FLAC, OGG</small>
+        </label>
+
+        <input id="audioFile" type="file"
+          accept=".mp3,.wav,.m4a,.flac,.ogg,audio/*" hidden>
+
+        <div id="fileInfo" class="file-info hidden">
+          <span>🎵</span>
+          <span id="fileName"></span>
+          <button id="removeFile" type="button">×</button>
+        </div>
+
+        <div id="audioPreviewWrap" class="audio-preview hidden">
+          <audio id="audioPreview" controls></audio>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="panel">
+          <div class="step-title">
+            <span class="step-number">2</span>
+            <div>
+              <h2>Select Language</h2>
+              <p>Choose the language spoken in the audio.</p>
+            </div>
+          </div>
+
+          <label>
+            Language
+            <select id="sttLanguage">
+              <option value="en-US">English (US)</option>
+              <option value="en-GB">English (UK)</option>
+              <option value="hi-IN">Hindi (India)</option>
+              <option value="es-ES">Spanish</option>
+              <option value="fr-FR">French</option>
+              <option value="de-DE">German</option>
+              <option value="it-IT">Italian</option>
+              <option value="pt-BR">Portuguese (Brazil)</option>
+              <option value="ja-JP">Japanese</option>
+              <option value="ko-KR">Korean</option>
+            </select>
+          </label>
+
+          <button id="transcribeBtn" class="primary-btn stt-btn" disabled>
+            <span>✦</span> Transcribe Audio
+          </button>
+        </div>
+
+        <div class="panel optional-panel">
+          <div class="step-title">
+            <span class="step-number">3</span>
+            <div>
+              <h2>Transcription</h2>
+              <p>Your recognized text will appear below.</p>
+            </div>
+          </div>
+
+          <div class="selection-summary">
+            <div>
+              <span>Language</span>
+              <strong id="selectedSttLanguage">English (US)</strong>
+            </div>
+            <div>
+              <span>Engine</span>
+              <strong>Amazon Transcribe</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sttResult" class="result-panel hidden">
+      <div class="result-header">
+        <div class="success-icon">✓</div>
+        <div>
+          <h2>Transcription Complete</h2>
+          <p>Your audio has been successfully converted to text.</p>
+        </div>
+      </div>
+
+      <div class="transcript-box">
+        <p id="transcriptText"></p>
+        <button id="copyBtn" class="copy-btn" type="button">▣ Copy Text</button>
+      </div>
+    </section>
+
+    <div id="sttError" class="error-panel hidden"></div>
+  </main>
+
+  <script src="js/stt.js"></script>
+</body>
+</html>
